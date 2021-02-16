@@ -17,7 +17,6 @@ public:
 Player::Player()
 {
     doorChoice = NULL;
-    int playerSwitches = false;
 }
 int Player::getDoorChoice()
 {
