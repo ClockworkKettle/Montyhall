@@ -21,13 +21,13 @@ This was my initial thought. By breaking it into truth tables I discovered a sim
 
 Given [ T F F ] ( the car is behind door number 1)
 (^ shows player choice, * shows door that can be opened)
-If the player starts at position 0  [ T^ F* F* ] and switches, the player will lose.
+If the player starts at position 0 and switches, the player will lose.
+[ T^ F* F* ]
 
- However if the player starts at either of the other positions, the other False result will be revealed for example
- [ T F^ F* ] [ T F* F^ ] 
+However if the player starts at either of the other positions, the other False result will be revealed for example
+[ T F^ F* ] [ T F* F^ ] 
 
-  This shows that if the player switches in either of these scenario's the player will win. For every scenario where the player loses by switching, there are two possibilities     
-  where the player wins. 
+This shows that if the player switches in either of these scenario's the player will win. For every scenario where the player loses by switching, there are two possibilities where the player wins. 
            
                                       
                                    
