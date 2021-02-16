@@ -1,5 +1,5 @@
 // montyhalll.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+
 #include <time.h>
 #include <iostream>
 #include <random>
@@ -8,31 +8,20 @@
 class Player
 {
     int doorChoice;
-    bool playerSwitches;
 public:
     Player();
     int getDoorChoice();
-    void changeChoice(bool b);
-    bool doesPlayerSwitch();
     void chooseDoor();
     void chooseNewDoor(int i);   
 };
 Player::Player()
 {
-    int doorchoice = NULL;
+    doorChoice = NULL;
     int playerSwitches = false;
 }
 int Player::getDoorChoice()
 {
     return doorChoice;
-}
-void Player::changeChoice(bool b)
-{
-    playerSwitches = b;
-}
-bool Player::doesPlayerSwitch()
-{
-    return playerSwitches;
 }
 void Player::chooseDoor()
 {
@@ -50,9 +39,6 @@ void Player::chooseNewDoor(int i)
     std::cout << "New door: " << doorChoice << " | ";
 }
 
-
-
-
 class game 
 {
     bool doors[3] = { };
@@ -65,7 +51,6 @@ public:
     void printDoors();
     void openDoor();
     int getOpenedDoor();
-    void choose(int i);
     void changeDoorChoice();
     bool doesPlayerWin();
 };
@@ -75,6 +60,7 @@ game::game()
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(0, 2);
     int random_index = distrib(gen);
+    openedDoor = NULL;
     for (int i = 0; i < 3; i++)
     {
         doors[i] = false;
@@ -90,7 +76,8 @@ bool game::isACar(int i)
     }
     return false;
 }
-void game::printDoors() {
+void game::printDoors() 
+{
     for (int i = 0; i < 3; i++)
     {
         std::cout << "Car behind door " << i << ": " << doors[i] <<std::endl;
@@ -128,9 +115,6 @@ void game::changeDoorChoice()
     }
     std::cout << "Player switches to: " << player.getDoorChoice() << " | ";
 }
-
-
-
 int main()
 {
     std::cout.setf(std::ios::boolalpha);
@@ -148,7 +132,6 @@ int main()
         //monty.printDoors();
         monty->player.chooseDoor();
         monty->openDoor();
-        monty->player.changeChoice(true);
         monty->changeDoorChoice();
         monty->player.getDoorChoice();
         std::cout << "Player wins: " << monty->doesPlayerWin();
