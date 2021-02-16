@@ -7,43 +7,57 @@
 
 class Player
 {
-    int choice;
+    int doorChoice;
+    bool playerSwitches;
 public:
     Player();
-    int getChoice();
-    void choose();
+    int getDoorChoice();
+    void changeChoice(bool b);
+    bool doesPlayerSwitch();
+    void chooseDoor();
 };
 Player::Player()
 {
-    int choice = NULL;
+    int doorchoice = NULL;
 }
-int Player::getChoice()
+int Player::getDoorChoice()
 {
-    return choice;
+    return doorChoice;
 }
-void Player::choose()
+void Player::changeChoice(bool b)
+{
+    playerSwitches = b;
+}
+bool Player::doesPlayerSwitch()
+{
+    return playerSwitches;
+}
+void Player::chooseDoor()
 {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(1, 3);
     int random = distrib(gen);
     random = random-1;
-    choice = random;
-    std::cout << "Player chooses: " << choice << std::endl;
+    doorChoice = random;
+    std::cout << "Player chooses: " << doorChoice << std::endl;
 }
 
-class game {
+
+
+class game 
+{
     bool doors[3] = { };
-    int openeddoor;
+    int openedDoor;
 
 public:
     game();
-    bool isacar(int i);
-    void printdoors();
-    void opendoor(Player player);
+    bool isACar(int i);
+    void printDoors();
+    void openDoor(Player player);
     int getOpenedDoor();
     void choose(int i);
-    void changechoice(int i);
+    void changeDoorChoice(int i);
 };
 game::game()
 {
@@ -58,7 +72,7 @@ game::game()
     }
     doors[random_index] = true;
 }
-bool game::isacar(int i)
+bool game::isACar(int i)
 {
     if (doors[i] == true)
     {
@@ -66,26 +80,26 @@ bool game::isacar(int i)
     }
     return false;
 }
-void game::printdoors() {
+void game::printDoors() {
     for (int i = 0; i < 3; i++)
     {
         std::cout << "Car behind door " << i << ": " << doors[i] <<std::endl;
     }
 }
-void game::opendoor(Player player)
+void game::openDoor(Player player)
 {
     for (int i = 0; i < 3; i++)
     {
-        if ((doors[i] != true) || (i != player.getChoice()))
+        if ((doors[i] != true) || (i != player.getDoorChoice()))
         {
-            openeddoor = i;
+            openedDoor = i;
             std::cout << "Door: " << i << " opened" << std::endl;
         }
     }
 }
 int game::getOpenedDoor()
 {
-    return openeddoor;
+    return openedDoor;
 }
 
 
@@ -93,8 +107,8 @@ int game::getOpenedDoor()
 int main()
 {
     game monty;
-    monty.printdoors();
     Player p;
-    p.choose();
+    monty.printDoors();
+    p.chooseDoor();
 
 }
