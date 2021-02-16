@@ -137,12 +137,15 @@ int main()
     int switchWins=0;
     int noSwitchWins=0;
     
-    for (int i = 0; i < 10000; i++) 
+    int numberOfIterations;
+    std::cout << "Please enter the number of times you wish to run the simulation: " << std::endl << ">";
+    std::cin >> numberOfIterations;
+
+    for (int i = 0; i < numberOfIterations; i++) 
     {
         
         game* monty = new game();
         //monty.printDoors();
-
         monty->player.chooseDoor();
         monty->openDoor();
         monty->player.changeChoice(true);
