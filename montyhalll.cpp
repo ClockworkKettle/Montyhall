@@ -40,7 +40,7 @@ void Player::chooseNewDoor(int i)
 
 class game 
 {
-    bool doors[3] = { };
+    bool doors[3];
     int openedDoor;
 
 public:
