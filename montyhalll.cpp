@@ -16,7 +16,7 @@ public:
 };
 Player::Player()
 {
-    doorChoice = NULL;
+    doorChoice = -1;
 }
 int Player::getDoorChoice()
 {
@@ -59,7 +59,7 @@ game::game()
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(0, 2);
     int random_index = distrib(gen);
-    openedDoor = NULL;
+    openedDoor = -1;
     for (int i = 0; i < 3; i++)
     {
         doors[i] = false;
