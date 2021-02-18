@@ -1,8 +1,34 @@
 // montyhalll.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
-#include <time.h>
+//#include <time.h>
+#include <chrono>
 #include <iostream>
 #include <random>
+
+
+class RandomGenerator
+{
+    std::random_device rd;
+    std::mt19937 gen;
+    std::uniform_int_distribution<int> distrib;
+    public:
+    RandomGenerator();
+    int getRandomInt(int lowerBound, int upperBound);
+};
+RandomGenerator::RandomGenerator()
+{
+    srand(std::chrono::system_clock::now().time_since_epoch().count());
+    for (int i=0; i<5; i++)
+    {
+       RandomGenerator::getRandomInt(0,2);
+    }
+}
+int RandomGenerator::getRandomInt(int lowerBound, int upperBound)
+{
+    std::uniform_int_distribution<int> distrib(lowerBound, upperBound);
+    return distrib(rd);
+}
+RandomGenerator randomInt;
 
 
 class Player
@@ -24,11 +50,7 @@ int Player::getDoorChoice()
 }
 void Player::chooseDoor()
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> distrib(1, 3);
-    int random = distrib(gen);
-    random = random-1;
+    int random = randomInt.getRandomInt(0,2);
     doorChoice = random;
     std::cout << "Player chooses: " << doorChoice << " | " ;
 }
@@ -42,7 +64,6 @@ class game
 {
     bool doors[3];
     int openedDoor;
-
 public:
     game();
     Player player;
@@ -55,10 +76,7 @@ public:
 };
 game::game()
 {
-    std::random_device rd;  
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distrib(0, 2);
-    int random_index = distrib(gen);
+    int random_index = randomInt.getRandomInt(0,2);
     openedDoor = -1;
     for (int i = 0; i < 3; i++)
     {
@@ -123,7 +141,7 @@ int main()
     int numberOfIterations;
     std::cout << "Please enter the number of times you wish to run the simulation: " << std::endl << ">";
     std::cin >> numberOfIterations;
-
+    RandomGenerator randomInt;
     for (int i = 0; i < numberOfIterations; i++) 
     {
         
