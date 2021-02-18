@@ -1,6 +1,5 @@
 // montyhalll.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
-//#include <time.h>
 #include <chrono>
 #include <iostream>
 #include <random>
