@@ -17,10 +17,6 @@ class RandomGenerator
 RandomGenerator::RandomGenerator()
 {
     srand(std::chrono::system_clock::now().time_since_epoch().count());
-    for (int i=0; i<5; i++)
-    {
-       RandomGenerator::getRandomInt(0,2);
-    }
 }
 int RandomGenerator::getRandomInt(int lowerBound, int upperBound)
 {
