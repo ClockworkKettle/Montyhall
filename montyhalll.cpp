@@ -161,10 +161,3 @@ int main()
     std::cout << "Switching Player Won: " << switchWins << " times" << std::endl;
     std::cout << "Non Switching Player Won: " << noSwitchWins << " times" << std::endl;
 }
-
-/*   win condition  win condition   lose condition
-pc  [T              F               F] 
-         
-    [F              F              T] 
-    
-*/
